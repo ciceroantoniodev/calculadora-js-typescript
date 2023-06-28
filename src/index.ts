@@ -14,7 +14,9 @@
    });
 
    const fCalc = (v) => {
-   
+        let vValue1 = document.getElementById("panelCalc").innerText
+        let vValue2 = document.getElementById("panelResult").innerText
+
         if (v === "C") {
             vValueAtual = "0"
             document.getElementById("panelResult").innerHTML = "0"
@@ -35,10 +37,16 @@
             console.log("diminuie")
 
         } else if (v === "+") {
+            document.getElementById("panelCalc").innerHTML = vValueAtual + " + "
             console.log("somar")
 
         } else if (v === "=") {
-            console.log("igual")
+            let vResult = eval(vValue1 + vValue2)
+
+            document.getElementById("panelCalc").innerHTML = vValue1 + vValue2 + " ="
+            document.getElementById("panelResult").innerHTML = vResult
+            
+            console.log(vResult)
         
         } else if (v === ",") {
 
@@ -50,14 +58,12 @@
 
         } else {
             vValueAtual += v
-            vValueAtual = (vValueAtual.indexOf(",")<=0) ? parseInt(vValueAtual) : vValueAtual
+            vValueAtual = ((vValueAtual.indexOf(",")<=0) ? parseInt(vValueAtual) : vValueAtual) + ""
             
             document.getElementById("panelResult").innerHTML = vValueAtual
-            
-            //vValueAtual = vValorNovo
-    
+
         }
-console.log(vValueAtual)
+
    }
 
 })();
