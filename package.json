@@ -4,7 +4,7 @@
   "description": "Calculadora Javascript com Typescript",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "npx tsc -w"
   },
   "author": "",
   "license": "ISC",

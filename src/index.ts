@@ -14,9 +14,9 @@
    });
 
    const fCalc = (v) => {
-    
+   
         if (v === "C") {
-            vValueAtual = 0
+            vValueAtual = "0"
             document.getElementById("panelResult").innerHTML = "0"
 
         } else if (v === "Del") {
@@ -39,24 +39,25 @@
 
         } else if (v === "=") {
             console.log("igual")
+        
+        } else if (v === ",") {
+
+            if (vValueAtual.indexOf(",") <= 0) {
+                vValueAtual += vValueAtual==="" ? "0" + v : v
+                
+                document.getElementById("panelResult").innerHTML = (vValueAtual.indexOf(",")<=0) ? parseInt(vValueAtual) : vValueAtual
+            }
 
         } else {
-            if (v === ",") {
-                if (vValueAtual.indexOf(",")<=0) {
-                    vValueAtual += vValueAtual==="" ? "0" + v : v
-                }
-
-            } else {
-                vValueAtual += vValueAtual==="" ? "0" : v
-
-            }
-        
+            vValueAtual += v
+            vValueAtual = (vValueAtual.indexOf(",")<=0) ? parseInt(vValueAtual) : vValueAtual
+            
             document.getElementById("panelResult").innerHTML = vValueAtual
             
             //vValueAtual = vValorNovo
     
         }
-
+console.log(vValueAtual)
    }
 
 })();
