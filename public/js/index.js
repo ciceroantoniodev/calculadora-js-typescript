@@ -14,6 +14,7 @@
         var vValue2 = document.getElementById("panelResult").innerText;
         if (v === "C") {
             vValueAtual = "0";
+            document.getElementById("panelCalc").innerHTML = "";
             document.getElementById("panelResult").innerHTML = "0";
         }
         else if (v === "Del") {
@@ -33,6 +34,8 @@
         }
         else if (v === "+") {
             document.getElementById("panelCalc").innerHTML = vValueAtual + " + ";
+            //vValueAtual = "0"
+            document.getElementById("panelResult").innerHTML = vValueAtual;
             console.log("somar");
         }
         else if (v === "=") {
@@ -50,6 +53,7 @@
         else {
             vValueAtual += v;
             vValueAtual = ((vValueAtual.indexOf(",") <= 0) ? parseInt(vValueAtual) : vValueAtual) + "";
+            console.log('[' + vValue1.length + ']');
             document.getElementById("panelResult").innerHTML = vValueAtual;
         }
     };
