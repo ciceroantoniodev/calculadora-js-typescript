@@ -4,95 +4,105 @@ var vOperator = "";
 var vControl = 0;
 
 (() => {
-    let vValueAtual = document.getElementById("panelResult").innerText
+    let vCurrentValue = document.getElementById("panelResult").innerText
     
-    vValueAtual = vValueAtual==="0" ? "" : vValueAtual
+    vCurrentValue = vCurrentValue==="0" ? "" : vCurrentValue
     
     const elButton = document.querySelectorAll("button")
     
     elButton.forEach((elValue)=>{
         elValue.addEventListener("click", (e) => {
-            const vValue = e.target.innerText
-            
-            fCalc(vValue)
+            const vKey = e.target.id
+           
+            fCalc(vKey.replace("n", ""))
         })
    });
 
 
    const fCalc = (v) => {
-        let vValue1 = document.getElementById("panelCalc").innerText
-        let vValue2 = document.getElementById("panelResult").innerText
+        let vResult = ""
+       
+        switch (v) {
+            case "cc":
+                vCurrentValue = "0"
+                vVal1 = "";
+                vVal2 = "";
+                vOperator = "";
+                vControl = 0;
+    
+                document.getElementById("panelCalc").innerHTML = ""
+                document.getElementById("panelResult").innerHTML = "0"            
+                break
 
-        if (v === "C") {
-            vValueAtual = "0"
-            document.getElementById("panelCalc").innerHTML = ""
-            document.getElementById("panelResult").innerHTML = "0"
+            case "del":
+            case "pe":
+            case "di":
+                fOperator("/")
+                break
+            case "mu":
+                fOperator("*")
+                break
 
-        } else if (v === "Del") {
-            console.log("apagar")
+            case "su":
+                fOperator("-")
+                break
 
-        } else if (v === "%") {
-            console.log("percentual")
+            case "so":
+                fOperator("+")
+                break
 
-        } else if (v === "/") {
-            console.log("dividir")
+            case "ig":
+                fOperator("=")
 
-        } else if (v === "x") {
-            console.log("mulltiplicar")
+                vResult = eval(vVal1 + vOperator + vVal2)
 
-        } else if (v === "-") {
-            console.log("diminuie")
-
-        } else if (v === "+") {
-            
-            fOperator("+")
-
-            document.getElementById("panelCalc").innerHTML = vValueAtual + " + "
-            //vValueAtual = "0"
-            document.getElementById("panelResult").innerHTML = vValueAtual
-            
-            console.log("somar")
-
-        } else if (v === "=") {
-            
-            fOperator("=")
-
-            let vResult = eval(vValue1 + vValue2)
-
-            document.getElementById("panelCalc").innerHTML = vValue1 + vValue2 + " ="
-            document.getElementById("panelResult").innerHTML = vResult
-            
-            console.log(vVal1 + vOperator + vVal2)
-            console.log(vResult)
-        
-        } else if (v === ",") {
-
-            if (vValueAtual.indexOf(",") <= 0) {
-                vValueAtual += vValueAtual==="" ? "0" + v : v
+                document.getElementById("panelCalc").innerHTML = vVal1 + vOperator + vVal2 + " ="
+                document.getElementById("panelResult").innerHTML = vResult
                 
-                document.getElementById("panelResult").innerHTML = (vValueAtual.indexOf(",")<=0) ? parseInt(vValueAtual) : vValueAtual
-            }
-
-        } else {
-            vValueAtual += v
-            vValueAtual = ((vValueAtual.indexOf(",")<=0) ? parseInt(vValueAtual) : vValueAtual) + ""
-
-            document.getElementById("panelResult").innerHTML = vValueAtual
-
+                
+            case "vi":
+                if (vCurrentValue.indexOf(",") <= 0) {
+                    vCurrentValue += vCurrentValue==="" ? "0" + v : v
+                    
+                    document.getElementById("panelResult").innerHTML = (vCurrentValue.indexOf(",")<=0) ? parseInt(vCurrentValue) : vCurrentValue
+                }
+                break
+                
+            default:
+                if (vOperator.length>0 && vCurrentValue.length<=0) {
+                    vCurrentValue = ""
+                }
+    
+                vCurrentValue += v
+                vCurrentValue = ((vCurrentValue.indexOf(",")<=0) ? parseInt(vCurrentValue) : vCurrentValue) + ""
+    
+                document.getElementById("panelResult").innerHTML = vCurrentValue
+    
         }
+
    }
 
    const fOperator = (op) => {
         if (vVal1.length<=0) {
-            vVal1 = vValueAtual
+            vVal1 = vCurrentValue
 
         } else {
-            vVal2 = vValueAtual
+            if (op==="=") {
+                if (vVal1.length>0 && vOperator.length>0) {
+                    vCurrentValue = vVal1
 
+                }
+            }
+            
+            vVal2 = vCurrentValue
+            
         }
 
         vOperator = op==="=" ? vOperator : op
 
+        document.getElementById("panelCalc").innerHTML = vCurrentValue + op
+        
+        vCurrentValue = ""
    }
 
 })();
