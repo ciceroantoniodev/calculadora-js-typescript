@@ -1,3 +1,8 @@
+var vVal1 = "";
+var vVal2 = "";
+var vOperator = "";
+var vControl = 0;
+
 (() => {
     let vValueAtual = document.getElementById("panelResult").innerText
     
@@ -12,6 +17,7 @@
             fCalc(vValue)
         })
    });
+
 
    const fCalc = (v) => {
         let vValue1 = document.getElementById("panelCalc").innerText
@@ -38,18 +44,25 @@
             console.log("diminuie")
 
         } else if (v === "+") {
+            
+            fOperator("+")
 
             document.getElementById("panelCalc").innerHTML = vValueAtual + " + "
             //vValueAtual = "0"
             document.getElementById("panelResult").innerHTML = vValueAtual
+            
             console.log("somar")
 
         } else if (v === "=") {
+            
+            fOperator("=")
+
             let vResult = eval(vValue1 + vValue2)
 
             document.getElementById("panelCalc").innerHTML = vValue1 + vValue2 + " ="
             document.getElementById("panelResult").innerHTML = vResult
             
+            console.log(vVal1 + vOperator + vVal2)
             console.log(vResult)
         
         } else if (v === ",") {
@@ -63,10 +76,22 @@
         } else {
             vValueAtual += v
             vValueAtual = ((vValueAtual.indexOf(",")<=0) ? parseInt(vValueAtual) : vValueAtual) + ""
-console.log('['+vValue1.length+']')           
+
             document.getElementById("panelResult").innerHTML = vValueAtual
 
         }
+   }
+
+   const fOperator = (op) => {
+        if (vVal1.length<=0) {
+            vVal1 = vValueAtual
+
+        } else {
+            vVal2 = vValueAtual
+
+        }
+
+        vOperator = op==="=" ? vOperator : op
 
    }
 
