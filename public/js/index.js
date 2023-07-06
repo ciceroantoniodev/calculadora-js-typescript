@@ -44,6 +44,7 @@ var vControl = 0;
                 vResult = eval(vVal1 + vOperator + vVal2);
                 document.getElementById("panelCalc").innerHTML = vVal1 + vOperator + vVal2 + " =";
                 document.getElementById("panelResult").innerHTML = vResult;
+                break;
             case "vi":
                 if (vCurrentValue.indexOf(",") <= 0) {
                     vCurrentValue += vCurrentValue === "" ? "0" + v : v;
@@ -51,25 +52,22 @@ var vControl = 0;
                 }
                 break;
             default:
-                if (vOperator.length > 0 && vCurrentValue.length <= 0) {
-                    vCurrentValue = "";
-                }
                 vCurrentValue += v;
                 vCurrentValue = ((vCurrentValue.indexOf(",") <= 0) ? parseInt(vCurrentValue) : vCurrentValue) + "";
+                if (vOperator.length <= 0) {
+                    vVal1 = vCurrentValue;
+                }
+                else {
+                    vVal2 = vCurrentValue;
+                }
                 document.getElementById("panelResult").innerHTML = vCurrentValue;
         }
     };
     var fOperator = function (op) {
-        if (vVal1.length <= 0) {
-            vVal1 = vCurrentValue;
-        }
-        else {
-            if (op === "=") {
-                if (vVal1.length > 0 && vOperator.length > 0) {
-                    vCurrentValue = vVal1;
-                }
+        if (op === "=") {
+            if (vVal1.length > 0 && vOperator.length > 0) {
+                vCurrentValue = vVal1;
             }
-            vVal2 = vCurrentValue;
         }
         vOperator = op === "=" ? vOperator : op;
         document.getElementById("panelCalc").innerHTML = vCurrentValue + op;
