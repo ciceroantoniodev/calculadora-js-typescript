@@ -22,25 +22,32 @@ main {
 }
 
 #main{
+    background: url(../images/bg_calculadora.png) no-repeat;
     background-color: #fcfcfc;
     border: #dddddd 1px solid;
+    height: 466px;
     margin: auto;
     padding: 5px;
     width: 300px;
 }
 
-.bottonArea {
+.bottonsArea {
     display: table;
-    width: 100%;
+    margin: auto;
+    width: 260px;
 }
 
 .panelView {
-    border: #dddddd 1px solid;
+    border: none;
     border-radius: 5px;
     font-size: 22px;
+    height: 75px;
+    margin: auto;
+    margin-top: 40px;
     margin-bottom: 10px;
     padding: 10px;
     text-align: right;
+    width: 230px;
 }
 
 #panelResult {
@@ -52,12 +59,12 @@ main {
 }
 
 .bottonBox {
+    border: none;
     float: left;
-    height: 50px;
-    line-height: 50px;
+    height: 64px;
     text-align: center;
     vertical-align: middle;
-    width: 25%;
+    width: 64px;
 }
 
 .bottonOperator {
@@ -69,12 +76,28 @@ main {
 }
 
 .bottonResult {
-    background-color: #4169e1;
-    color: #ffffff;
+    border: none;
     float: left;
-    height: 50px;
-    line-height: 50px;
-    text-align: center;
-    vertical-align: middle;
-    width: 50%;
+    height: 64px;
+    width: 128px;
 }
+
+#cc { background: url(../images/btn_c.png) no-repeat top left;}
+#del { background: url(../images/btn_del.png) no-repeat top left;}
+#pe { background: url(../images/btn_percentual.png) no-repeat top left;}
+#di { background: url(../images/btn_divisao.png) no-repeat top left;}
+#n7 { background: url(../images/btn_7.png) no-repeat top left;}
+#n8 { background: url(../images/btn_8.png) no-repeat top left;}
+#n9 { background: url(../images/btn_9.png) no-repeat top left;}
+#mu { background: url(../images/btn_multiplicar.png) no-repeat top left;}
+#n4 { background: url(../images/btn_4.png) no-repeat top left;}
+#n5 { background: url(../images/btn_5.png) no-repeat top left;}
+#n6 { background: url(../images/btn_6.png) no-repeat top left;}
+#su { background: url(../images/btn_subtrair.png) no-repeat top left;}
+#n1 { background: url(../images/btn_1.png) no-repeat top left;}
+#n2 { background: url(../images/btn_2.png) no-repeat top left;}
+#n3 { background: url(../images/btn_3.png) no-repeat top left;}
+#n0 { background: url(../images/btn_0.png) no-repeat top left;}
+#so { background: url(../images/btn_somar.png) no-repeat top left;}
+#vi { background: url(../images/btn_ponto.png) no-repeat top left;}
+#ig { background: url(../images/btn_igual.png) no-repeat top left;}
