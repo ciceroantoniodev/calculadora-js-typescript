@@ -65,6 +65,7 @@ var vControl = 0;
     };
     var fOperator = function (op) {
         if (op === "=") {
+            console.log('[' + vResult + ']');
             if (vVal1.length > 0 && vOperator.length > 0) {
                 vCurrentValue = vVal1;
             }

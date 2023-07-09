@@ -39,6 +39,7 @@ var vControl = 0;
             case "di":
                 fOperator("/")
                 break
+
             case "mu":
                 fOperator("*")
                 break
@@ -88,6 +89,7 @@ var vControl = 0;
 
    const fOperator = (op) => {
         if (op==="=") {
+console.log('['+vResult+']')
             if (vVal1.length>0 && vOperator.length>0) {
                 vCurrentValue = vVal1
 
